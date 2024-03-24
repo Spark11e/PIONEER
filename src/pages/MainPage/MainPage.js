@@ -1,10 +1,19 @@
 import React from 'react';
 
 import styles from './MainPage.module.css'
+
+import { useNavigate } from "react-router-dom";
+import { LOGIN_ROUTER } from '../../utils/const';
+
 const MainPage = () => {
 
+    const navigate = useNavigate();
 
-
+    const handleLoginClick  = (e) => {
+        
+        e.preventDefault();
+        navigate(LOGIN_ROUTER);
+    }
 
     return (
         <div className={styles.main__container}>
@@ -17,8 +26,8 @@ const MainPage = () => {
             <div className={styles.button_menu}>
                 <div className={styles.button_list}>
                     <div className={styles.button__item}>
-                        <button className={styles.button__xl}>
-                            <a className={styles.button__link} href="/#" target="_blank">Владельцам транспортным средствам</a>
+                        <button onClick={handleLoginClick} className={styles.button__xl}  >
+                            <a className={styles.button__link} href="/#"  target="_blank">Владельцам транспортным средствам</a>
                         </button>
                     </div>
                     <div className={styles.button__item}>
