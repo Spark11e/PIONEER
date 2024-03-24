@@ -36,17 +36,18 @@ export default class UserStore {
     }
 
 
+    reset() {
+        this.phoneNumber = '';
+        this.email = '';
+        this.selectedService = '';
+        this.selectedLocation = '';
+        this.selectedTime = '';
+    }
 
 
 
 
-
-
-
-
-
-
-
+    //////////////////////
 
 
     setIsAuth(bool) {
@@ -63,4 +64,6 @@ export default class UserStore {
     get user(){
         return this._user
     }
+
+    
 }
