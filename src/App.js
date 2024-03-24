@@ -1,12 +1,12 @@
 import NavBar from "./components/Navbar/Navbar";
-import MainPage from "./pages/MainPage";
+import MainPage from "./pages/MainPage/MainPage";
 import './App.css';
 
 const App = ()  => {
   return (
       <div className="wrapper">
-        <NavBar/>
-        <MainPage/>
+          <NavBar/>
+          <MainPage/>
       </div>
     
   );

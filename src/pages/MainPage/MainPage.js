@@ -16,17 +16,17 @@ const MainPage = () => {
             </div>
             <div className={styles.button_menu}>
                 <div className={styles.button_list}>
-                    <div className={styles.button_item}>
+                    <div className={styles.button__item}>
                         <button className={styles.button__xl}>
                             <a className={styles.button__link} href="/#" target="_blank">Владельцам транспортным средствам</a>
                         </button>
                     </div>
-                    <div class={styles.button_item}>
+                    <div className={styles.button__item}>
                         <button className={styles.button__xl}>
                             <a className={styles.button__link} href="/#" target="_blank">Организациям Партнерам</a>
                         </button>
                     </div>
-                    <div class="button_item">
+                    <div className={styles.button__item}>
                         <button className={styles.button__xl}>
                             <a className={styles.button__link} href="/#" target="_blank">Администрирование</a>
                         </button>
