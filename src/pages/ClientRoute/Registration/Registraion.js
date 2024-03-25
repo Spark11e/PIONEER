@@ -4,6 +4,8 @@ import UserStore from "../../../store/UserStore";
 import { useNavigate } from "react-router-dom";
 import { SERVICES_ROUTER } from '../../../utils/const';
 
+import InputMask from 'react-input-mask';
+
 import {Context} from '../../../index'
 
 import styles from './Registraion.module.css'
@@ -47,7 +49,9 @@ const Registraion = observer(() => {
                     <div className={styles.registraion__list}>
                         <div className={styles.registraion__item} >
                             <label>Номер телефона</label>
-                            <input
+                            <InputMask
+                                mask="8 (999) 999-99-99"
+                                maskChar="_"
                                 type="text"
                                 placeholder="Номер телефона"
                                 value={phoneNumber}
