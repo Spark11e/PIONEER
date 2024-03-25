@@ -1,17 +1,23 @@
 import React from 'react';
 
-const Button = () => {
+const Button = ({text}) => {
+
+    const buttonStyle = {
+        fontSize: '15px',
+        cursor: 'pointer',
+        fontWeight: 500,
+        color: '#EAE4E4',
+        border: 'none',
+        width: '245px',
+        height: '48px',
+        backgroundColor: '#c2b4b4'
+    };
+
     return (
-        <button></button>
+        <button style={buttonStyle}>{text}</button>
     );
 };
 
-<style>
 
-    button{
-        
-
-    }
-</style>
 
 export default Button;

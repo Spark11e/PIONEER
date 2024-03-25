@@ -1,27 +1,26 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import { observer } from 'mobx-react-lite';
 import UserStore from "../../../store/UserStore";
+import { useNavigate } from "react-router-dom";
+import { SERVICES_ROUTER } from '../../../utils/const';
 
-import CheckboxComponent from '../../../components/Checkbox';
+import {Context} from '../../../index'
+
 import styles from './Registraion.module.css'
 
 const Registraion = observer(() => {
 
-    const [phoneNumber, setPhoneNumber] = useState('');
-    const [email, setEmail] = useState('');
+    const navigate = useNavigate();
+
+    const [phoneNumber, setPhone] = useState('');
+    const [email, setAdress] = useState('');
     const [isChecked, setIsChecked] = useState(false);
 
-    const handlePhoneChange = (e) => {
-        UserStore.setPhoneNumber(e.target.value);
-    };
-
-    const handleEmailChange = (e) => {
-        UserStore.setEmail(e.target.value);
-    };
+    const { user } = useContext(Context);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-    
+        handleNext();
     };
 
     const handleCheckboxChange = () => {
@@ -29,8 +28,9 @@ const Registraion = observer(() => {
       }
 
     const handleNext = () => {
-        UserStore.setPhoneNumber(phoneNumber);
-        UserStore.setEmail(email);
+        user.setPhoneNumber(phoneNumber);
+        user.setEmail(email);
+        navigate(SERVICES_ROUTER);
 
     };
 
@@ -51,7 +51,7 @@ const Registraion = observer(() => {
                                 type="text"
                                 placeholder="Номер телефона"
                                 value={phoneNumber}
-                                onChange={(e) => setPhoneNumber(e.target.value)}
+                                onChange={(e) => setPhone(e.target.value)}
                             />
                         </div>
 
@@ -61,7 +61,7 @@ const Registraion = observer(() => {
                                 type="email"
                                 placeholder="Email"
                                 value={email}
-                                onChange={(e) => setEmail(e.target.value)}
+                                onChange={(e) => setAdress(e.target.value)}
                             />
                         </div>
                     </div>
@@ -79,7 +79,7 @@ const Registraion = observer(() => {
 
                     <div className={styles.registraion__button}>
 
-                        <button  disabled={!isChecked} type="submit" >Зарегистрироваться</button>
+                        <button onClick={handleSubmit} disabled={!isChecked} type="submit" >Зарегистрироваться</button>
                     </div>
 
                 </form>

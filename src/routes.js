@@ -2,7 +2,9 @@ import MainPage from "./pages/MainPage/MainPage";
 
 import Registraion from './pages/ClientRoute/Registration/Registraion';
 
-import { MAINPAGE_ROUTER, LOGIN_ROUTER } from "./utils/const";
+import ServiceSelection from './pages/ClientRoute/ServiceSelection/ServiceSelection';
+
+import { MAINPAGE_ROUTER, LOGIN_ROUTER, SERVICES_ROUTER } from "./utils/const";
 
 export const authRoutes = [
     // {
@@ -20,6 +22,11 @@ export const publicRoutes = [
     {
         path: LOGIN_ROUTER,
         Component: Registraion
+    },
+
+    {
+        path: SERVICES_ROUTER,
+        Component: ServiceSelection
     },
     
 ]

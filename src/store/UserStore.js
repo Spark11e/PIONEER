@@ -44,6 +44,14 @@ export default class UserStore {
         this.selectedTime = '';
     }
 
+    printUserData() {
+        console.log('Phone Number:', this.phoneNumber);
+        console.log('Email:', this.email);
+        console.log('Selected Service:', this.selectedService);
+        console.log('Selected Location:', this.selectedLocation);
+        console.log('Selected Time:', this.selectedTime);
+    }
+
 
 
 
