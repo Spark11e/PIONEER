@@ -1,50 +1,42 @@
-
-import React, { useState, useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { observer } from 'mobx-react-lite';
-import {Context} from '../../../index'
-import Button from "../../../components/Button";
-import { useNavigate } from "react-router-dom";
-import { ORGANIZATION_ROUTER} from '../../../utils/const';
 
+import { Context } from '../../../index';
+import { useNavigate } from 'react-router-dom';
 import styles from './OrganizationSelect.module.css';
+import { ORGANIZATION_ROUTER } from '../../../utils/const';
 
 const OrganizationSelect = observer(() => {
-
+    const { user } = useContext(Context);
     const navigate = useNavigate();
 
-    const { user } = useContext(Context);
     const [searchCity, setSearchCity] = useState('');
     const [filteredOrganizations, setFilteredOrganizations] = useState([]);
 
 
     const handleSearch = () => {
-        const filtered = user.organizations.filter(org =>
+        const filtered = user.organizations.filter(org => 
             org.city_name.toLowerCase().includes(searchCity.toLowerCase())
         );
+
         setFilteredOrganizations(filtered);
+
+
         
-        setSearchCity('');
-    };
+    }
 
     const handleSelectOrganization = (organization) => {
-        user.printUserData(user);
-        console.log('Выбрана организация:', organization);
+        user.setSelectedOrganization(organization);
+        user.setSelectedLocation(organization.city_name)
+
+        // ORGANIZATION_ROUTER + '/' + organization.organization_id
+        // user.printUserData(user);
+        console.log(user.getSelectedOrganization());
+        navigate(ORGANIZATION_ROUTER + '/' + organization.organization_id);
     };
 
-    // const [selectedService, setService] = useState('');
-
-    // const handleNext = () => {
-    //     user.setSelectedService(selectedService);
-    //     // navigate(NEXT_PAGE_ROUTER);
-    // };
-
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     handleNext();
-    // };
-
     return (
-        <div className={styles.main__container}>
+        <div className={styles.organization__container}>
             <div className={styles.search__container}>
                 <input
                     type="text"
@@ -52,14 +44,17 @@ const OrganizationSelect = observer(() => {
                     value={searchCity}
                     onChange={(e) => setSearchCity(e.target.value)}
                 />
+            </div>    
                 <button onClick={handleSearch}>Искать</button>
-            </div>
-            <div className={styles.organizations__list}>
-                {filteredOrganizations.map(org => (
-                    <div key={org.organization_id} className={styles.organization__item}>
-                        <p>{org.subject_name}</p>
-                        <p>{org.city_name}, {org.street_name} {org.house_number}</p>
-                        <button onClick={() => handleSelectOrganization(org)}>Выбрать</button>
+            <div className={styles.organization__list}>
+                {filteredOrganizations.map(organization => (
+                    <div
+                        key={organization.organization_id}
+                        className={styles.organization__item}
+                        onClick={() => handleSelectOrganization(organization)}
+                    >
+                        <div>{organization.subject_name}</div>
+                        <div>{organization.city_name}, {organization.street_name} {organization.house_number}</div>
                     </div>
                 ))}
             </div>

@@ -1,6 +1,6 @@
 import React, {useState, useContext} from 'react';
 import { observer } from 'mobx-react-lite';
-import UserStore from "../../../store/UserStore";
+
 import { useNavigate } from "react-router-dom";
 import { SERVICES_ROUTER } from '../../../utils/const';
 

@@ -13,7 +13,7 @@ const ServiceSelection = observer(() => {
 
     const { user } = useContext(Context);
 
-    const [selectedService, setService] = useState('');
+    const [selectedService, setService] = useState(null);
 
     const handleNext = () => {
         user.setSelectedService(selectedService);
@@ -24,6 +24,8 @@ const ServiceSelection = observer(() => {
         e.preventDefault();
         handleNext();
     };
+
+
 
     return (
         <div className={styles.main__container}>
@@ -37,8 +39,8 @@ const ServiceSelection = observer(() => {
                             className={styles.services__checkbox}
                             type="checkbox"
                             id="carWash"
-                            checked={selectedService === 'Мойка'}
-                            onChange={() => setService('Мойка')}
+                            checked={selectedService === 1}
+                            onChange={() => setService(1)}
                         />
                         <label htmlFor="carWash">Автомойка</label>
                     </div>
@@ -47,8 +49,8 @@ const ServiceSelection = observer(() => {
                             className={styles.services__checkbox}
                             type="checkbox"
                             id="tireService"
-                            checked={selectedService === 'Шиномонтаж'}
-                            onChange={() => setService('Шиномонтаж')}
+                            checked={selectedService === 2}
+                            onChange={() => setService(2)}
                         />
                         <label htmlFor="tireService">Шиномонтаж</label>
                     </div>
