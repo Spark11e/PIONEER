@@ -79,7 +79,6 @@ export default class OrganizationStore {
 
 
 
-
 // this._types = [
 //     {id: 1, name : 'Холодильник'},
 //     {id: 2, name : 'Смартфон'}
