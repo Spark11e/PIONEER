@@ -6,15 +6,14 @@ import styles from './OrganizationItem.module.css';
 
 const OrganizationItem = observer(() => {
 
-    const {organization_id} = useParams();
+    // const {organization_id} = useParams();
+
 
     const { user } = useContext(Context);
 
-    const selectedOrganization = user.organizations.find(org => org.organization_id === Number(organization_id));
-
-    console.log(selectedOrganization)
      // для выбора услуги
-
+    // console.log(user.selectedOrganization)
+    
     const handleSelectService = (service) => {
 
         if (user.selectedServices.find(s => s.type_id === service.type_id)) {
@@ -30,13 +29,15 @@ const OrganizationItem = observer(() => {
         return user.selectedServices.some(s => s.type_id === service.type_id);
     };
 
-    //фильтр услуг
 
     const filteredServices = user.carServices.filter(service => service.type_code === user.selectedService);
 
+
+
     return (
         <div className={styles.services__container}>
-            <h2>Услуги для {selectedOrganization.subject_name}</h2>
+            <h2>Услуги для {user.selectedOrganization.subject_name}</h2>
+            {/* <div>{`ул ${user.selectedOrganization.street_name}, д ${user.selectedOrganization.house_number}`}</div> */}
             {filteredServices.map(service => (
                 <div key={service.type_id} className={styles.service__item}>
                     <input

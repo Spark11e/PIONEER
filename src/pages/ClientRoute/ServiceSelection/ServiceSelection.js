@@ -34,7 +34,22 @@ const ServiceSelection = observer(() => {
                     <h2>Выбор услуги</h2>
                 </div>
                 <div className={styles.services}>
-                    <div className={styles.service__item}>
+                    {user.typeService.map(item => (
+                        
+                        <div key={item.type_id} className={styles.service__item}>
+                            <input
+                                className={styles.services__checkbox}
+                                type="checkbox"
+                                id={item.type_name}
+                                checked={selectedService === item.type_code}
+                                onChange={() => setService(item.type_code)}
+                            />
+                            <label htmlFor={item.type_name}>{item.type_name}</label>
+                        </div>
+                        
+                    ))}
+
+                    {/* <div className={styles.service__item}>
                         <input
                             className={styles.services__checkbox}
                             type="checkbox"
@@ -53,7 +68,7 @@ const ServiceSelection = observer(() => {
                             onChange={() => setService(2)}
                         />
                         <label htmlFor="tireService">Шиномонтаж</label>
-                    </div>
+                    </div> */}
                 </div>
                 <div className={styles.button__container}>
                     <Button text={"Выбрать услугу"} onClick={handleSubmit} disabled={!selectedService} className={styles.next__button}>

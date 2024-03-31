@@ -13,11 +13,19 @@ const OrganizationSelect = observer(() => {
     const [searchCity, setSearchCity] = useState('');
     const [filteredOrganizations, setFilteredOrganizations] = useState([]);
 
+    const [isFilterArr, setIsFilterArr] = useState(true)
+
 
     const handleSearch = () => {
-        const filtered = user.organizations.filter(org => 
+        let filtered = user.organizations.filter(org => 
             org.city_name.toLowerCase().includes(searchCity.toLowerCase())
         );
+
+        if(user.selectedService !== null) {
+            filtered = filtered.filter(org => org.organization_type === user.selectedService)
+        }
+
+        setIsFilterArr(filtered.length > 0); // Проверяем наличие результатов
 
         setFilteredOrganizations(filtered);
 
@@ -27,11 +35,12 @@ const OrganizationSelect = observer(() => {
 
     const handleSelectOrganization = (organization) => {
         user.setSelectedOrganization(organization);
-        user.setSelectedLocation(organization.city_name)
 
+        user.setSelectedLocation(organization.city_name)
+    
+        console.log(user.printUserData(user));
         // ORGANIZATION_ROUTER + '/' + organization.organization_id
         // user.printUserData(user);
-        console.log(user.getSelectedOrganization());
         navigate(ORGANIZATION_ROUTER + '/' + organization.organization_id);
     };
 
@@ -57,6 +66,7 @@ const OrganizationSelect = observer(() => {
                         <div>{organization.city_name}, {organization.street_name} {organization.house_number}</div>
                     </div>
                 ))}
+                {!isFilterArr ? <div>Ничего не найдено</div> : null}
             </div>
         </div>
     );

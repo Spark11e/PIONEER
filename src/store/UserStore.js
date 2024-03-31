@@ -11,10 +11,10 @@ export default class UserStore {
     selectedServices = [] // Выбранные услуги для организации
 
     organizations = [
-        { organization_id: 0, subject_name: 'Агригатор', city_name: 'Москва', street_name: 'Буянова', house_number: 23 },
-        { organization_id: 1, subject_name: 'МоскваСити', city_name: 'Москва', street_name: 'Матросова', house_number: 21 },
-        { organization_id: 2, subject_name: 'РусАвто', city_name: 'Самара', street_name: 'Буянова', house_number: 44 },
-        { organization_id: 3, subject_name: 'СамараАвто', city_name: 'Самара', street_name: 'Маяковская', house_number: 55 },
+        { organization_id: 0, subject_name: 'Агригатор_Мойка', city_name: 'Москва', street_name: 'Буянова', house_number: 23, organization_type: 1 },
+        { organization_id: 1, subject_name: 'МоскваСити_Мойка', city_name: 'Москва', street_name: 'Матросова', house_number: 21,organization_type: 1 },
+        { organization_id: 2, subject_name: 'РусАвто_Сервис', city_name: 'Самара', street_name: 'Буянова', house_number: 44, organization_type: 2},
+        { organization_id: 3, subject_name: 'СамараАвто_Сервис', city_name: 'Самара', street_name: 'Маяковская', house_number: 55, organization_type: 2 },
     ];
 
     carServices = [
@@ -25,6 +25,11 @@ export default class UserStore {
         { type_id: 4, type_code: 2,  type_name: 'Замена масла', price: 1000, duration: '1 час' },
         { type_id: 5, type_code: 2,  type_name: 'Подготовка к зиме', price: 1500, duration: '2 часа' },
     ];
+
+    typeService = [
+        {type_id: 0, type_code: 1,  type_name: 'Мойка'},
+        {type_id: 1, type_code: 2,  type_name: 'Шиномонтаж'},
+    ]
    
     constructor() {
         // this._isAuth = true;
@@ -135,3 +140,5 @@ export default class UserStore {
 
     
 }
+
+
