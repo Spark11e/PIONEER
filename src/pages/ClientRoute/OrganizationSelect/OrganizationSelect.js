@@ -22,7 +22,7 @@ const OrganizationSelect = observer(() => {
         );
 
         if(user.selectedService !== null) {
-            filtered = filtered.filter(org => org.organization_type === user.selectedService)
+            filtered = filtered.filter(org => org.organization_type === user.selectedService.type_code)
         }
 
         setIsFilterArr(filtered.length > 0); // Проверяем наличие результатов
@@ -36,9 +36,11 @@ const OrganizationSelect = observer(() => {
     const handleSelectOrganization = (organization) => {
         user.setSelectedOrganization(organization);
 
+        // console.log(user.getSelectedOrganization())
+
         user.setSelectedLocation(organization.city_name)
     
-        console.log(user.printUserData(user));
+        // console.log(user.printUserData(user));
         // ORGANIZATION_ROUTER + '/' + organization.organization_id
         // user.printUserData(user);
         navigate(ORGANIZATION_ROUTER + '/' + organization.organization_id);

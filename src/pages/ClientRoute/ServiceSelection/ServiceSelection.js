@@ -41,8 +41,8 @@ const ServiceSelection = observer(() => {
                                 className={styles.services__checkbox}
                                 type="checkbox"
                                 id={item.type_name}
-                                checked={selectedService === item.type_code}
-                                onChange={() => setService(item.type_code)}
+                                checked={selectedService?.type_id === item.type_id}
+                                onChange={() => setService(item)}
                             />
                             <label htmlFor={item.type_name}>{item.type_name}</label>
                         </div>

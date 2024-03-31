@@ -4,7 +4,7 @@ export default class UserStore {
 
     phoneNumber = '';
     email = '';
-    selectedService = 1; // выбранная услуга: 'шиномонтаж' или 'мойка'
+    selectedService = {type_id: 0, type_code: 1,  type_name: 'Мойка'}; // выбранная услуга: 'шиномонтаж' или 'мойка'
     selectedLocation = ''; // выбранное место
     selectedTime = '';  // Выбранное время
     selectedOrganization = {}; 
@@ -18,12 +18,12 @@ export default class UserStore {
     ];
 
     carServices = [
-        { type_id: 0, type_code: 1,  type_name: 'Мойка кузова', price: 500, duration: '1 час' },
-        { type_id: 1, type_code: 1,  type_name: 'Мойка днища', price: 700, duration: '1.5 часа' },
-        { type_id: 2, type_code: 1,  type_name: 'Полировка', price: 1000, duration: '2 часа' },
-        { type_id: 3, type_code: 2,  type_name: 'Ремонт двигателя', price: 5000, duration: '3 часа' },
-        { type_id: 4, type_code: 2,  type_name: 'Замена масла', price: 1000, duration: '1 час' },
-        { type_id: 5, type_code: 2,  type_name: 'Подготовка к зиме', price: 1500, duration: '2 часа' },
+        { type_id: 0, type_code: 1,  type_name: 'Мойка кузова', price: 500, duration: 15 },
+        { type_id: 1, type_code: 1,  type_name: 'Мойка днища', price: 700, duration:  60},
+        { type_id: 2, type_code: 1,  type_name: 'Полировка', price: 1000, duration: 10 },
+        { type_id: 3, type_code: 2,  type_name: 'Ремонт двигателя', price: 5000, duration: 15 },
+        { type_id: 4, type_code: 2,  type_name: 'Замена масла', price: 1000, duration: 55 },
+        { type_id: 5, type_code: 2,  type_name: 'Подготовка к зиме', price: 1500, duration: 80 },
     ];
 
     typeService = [
@@ -58,11 +58,11 @@ export default class UserStore {
     }
 
 
-    addSelectedService(service) {
+    addSelectedServices(service) {
         this.selectedServices.push(service);
     }
 
-    removeSelectedService(serviceId) {
+    removeSelectedServices(serviceId) {
         this.selectedServices = this.selectedServices.filter(service => service.type_id !== serviceId);
     }
 
@@ -93,6 +93,9 @@ export default class UserStore {
     }
     getSelectedTime(){
         return this.selectedTime
+    }
+    getSelectedServices() {
+        return this.selectedServices
     }
 
 
