@@ -29,6 +29,7 @@ export default class UserStore {
     typeService = [
         {type_id: 0, type_code: 1,  type_name: 'Мойка'},
         {type_id: 1, type_code: 2,  type_name: 'Шиномонтаж'},
+        {type_id: 2, type_code: 3,  type_name: 'Автосервис'},
     ]
    
     constructor() {
