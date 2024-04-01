@@ -48,15 +48,19 @@ const OrganizationSelect = observer(() => {
 
     return (
         <div className={styles.organization__container}>
-            <div className={styles.search__container}>
+            <div className={styles.form__search}>
                 <input
+                    className={styles.form_input}
                     type="text"
                     placeholder="Введите город"
                     value={searchCity}
                     onChange={(e) => setSearchCity(e.target.value)}
                 />
+                <button onClick={handleSearch} >
+                    Искать
+                </button>
             </div>    
-                <button onClick={handleSearch}>Искать</button>
+             
             <div className={styles.organization__list}>
                 {filteredOrganizations.map(organization => (
                     <div
@@ -64,8 +68,8 @@ const OrganizationSelect = observer(() => {
                         className={styles.organization__item}
                         onClick={() => handleSelectOrganization(organization)}
                     >
-                        <div>{organization.subject_name}</div>
-                        <div>{organization.city_name}, {organization.street_name} {organization.house_number}</div>
+                        <div className={styles.organization_name}>{organization.subject_name}</div>
+                        <div className={styles.organization_adress} >{organization.city_name}, {organization.street_name} {organization.house_number}</div>
                     </div>
                 ))}
                 {!isFilterArr ? <div>Ничего не найдено</div> : null}

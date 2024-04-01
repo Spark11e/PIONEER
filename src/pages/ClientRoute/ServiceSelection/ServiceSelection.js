@@ -29,7 +29,7 @@ const ServiceSelection = observer(() => {
 
     return (
         <div className={styles.main__container}>
-            <form onSubmit={handleSubmit}>
+            <form  className={styles.services_form} onSubmit={handleSubmit}>
                 <div>
                     <h2>Выбор услуги</h2>
                 </div>

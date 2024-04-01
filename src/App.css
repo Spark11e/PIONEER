@@ -13,7 +13,12 @@ a{
   text-decoration: none;
 }
 body{
-  background-color: #b3abab;
+  background-color: #F9F1E7;
+
+}
+
+input:focus {
+  outline: none;
 
 }
 .wrapper{

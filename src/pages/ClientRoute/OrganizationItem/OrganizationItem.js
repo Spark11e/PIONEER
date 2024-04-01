@@ -5,6 +5,7 @@ import { Context } from '../../../index';
 import styles from './OrganizationItem.module.css';
 
 import { ORGANIZATION_ROUTER, CONFIRM_ROUTER } from '../../../utils/const';
+import Button from "../../../components/Button";
 
 const OrganizationItem = observer(() => {
 
@@ -54,24 +55,28 @@ const OrganizationItem = observer(() => {
 
     return (
         <div className={styles.services__container}>
-            <h2>{user.selectedService.type_name} Услуги для {user.selectedOrganization.subject_name}</h2>
-            <div>{`ул ${user.selectedOrganization.street_name}, д ${user.selectedOrganization.house_number}`}</div>
-            {filteredServices.map(service => (
-                    <div key={service.type_id} className={styles.service__item}>
-                        <input
-                            type="checkbox"
-                            id={`service-${service.type_id}`}
-                            checked={isServiceSelected(service)}
-                            onChange={() => handleSelectService(service)}
-                        />
-                        <label htmlFor={`service-${service.type_id}`}>
-                            {service.type_name} - {service.price} руб., {service.duration}
-                        </label>  
-                    </div>
-            ))}
+            <div>
+                <h2>{user.selectedService.type_name}, {user.selectedOrganization.subject_name}</h2>
+            </div>
+            <div className={styles.services__list}>
+                {filteredServices.map(service => (
+                        <div key={service.type_id} className={styles.service__item}>
+                            <input
+                                type="checkbox"
+                                id={`service-${service.type_id}`}
+                                checked={isServiceSelected(service)}
+                                onChange={() => handleSelectService(service)}
+                            />
+                            <label htmlFor={`service-${service.type_id}`}>
+                                {service.type_name} - {service.price} руб, {service.duration} мин
+                            </label>  
+                        </div>
+                ))}
+
+            </div>
 
             <button onClick={handleClick}>Выбрать</button>
-        </div>
+        </div> 
     );
 });
 

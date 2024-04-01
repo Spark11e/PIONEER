@@ -1,6 +1,6 @@
 .main__container{
-    box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
-    background-color: #EBE2E2;
+    box-shadow: 0 4px 15px rgb(0 0 0 / 10%);
+    background-color: white;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -42,9 +42,11 @@ h2{
     font-weight: 500;
     border: none;
     height: 33px;
-    background-color: #ccc7c7;
+    background-color: #f9f0f0;
 
 }
+
+
 
 .registraion__checkbox{
     margin-top: 30%;
@@ -66,11 +68,12 @@ h2{
     font-size: 15px;
     cursor: pointer;
     font-weight: 500;
-    color: #EAE4E4;
-    border: none;
+    color: #E89F71;
+    border: 1px solid #E89F71;
     width: 245px;
     height: 48px;
-    background-color: #c2b4b4;
+    background-color: #fff;
+   
 
 }
 

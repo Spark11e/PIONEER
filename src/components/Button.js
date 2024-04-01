@@ -6,11 +6,12 @@ const Button = ({text}) => {
         fontSize: '15px',
         cursor: 'pointer',
         fontWeight: 500,
-        color: '#EAE4E4',
-        border: 'none',
+        color: '#E89F71',
+        border: '1px solid #E89F71',
         width: '245px',
         height: '48px',
-        backgroundColor: '#c2b4b4'
+        backgroundColor: '#fff'
+   
     };
 
     return (

@@ -1,6 +1,6 @@
 .main__container{
-    box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
-    background-color: #EBE2E2;
+    box-shadow: 0 4px 15px rgb(0 0 0 / 10%);
+    background-color: white;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -34,7 +34,7 @@
 }
 
 .services__checkbox:checked{
-    background-color: gray;
+    background-color: #d1b19b;
 }
 
 .service__item{
@@ -45,23 +45,40 @@
     align-items: center;
 }
 
+.service__item:hover{
+    transform: scale(1.05);
+    
+}
+
 .service__item  label {
     margin-left: 20px ;
     font-size: 25px;
     font-weight: 500;
 }
 
+h2{
+    font-size: 37px
+}
+
 .services{
-    box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
+
     width: 250px;
     height: 200px;
-    background-color: #dad4d4;
     margin-top: 5%;
     gap: 30px;
     display: flex;
     justify-content: space-around;
     align-items: center;
     flex-direction: column;
+}
+
+.services_form{
+    gap: 30px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+
 }
 
 .button__container{
