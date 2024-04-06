@@ -1,11 +1,11 @@
 .main__container{
     box-shadow: 0 4px 15px rgb(0 0 0 / 10%);
     background-color: white;
-    height: 100vh;
+    min-height: 75vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 100px;
+    border-radius: 6%;
 }
 
 /* .service__item input {
@@ -34,7 +34,7 @@
 }
 
 .services__checkbox:checked{
-    background-color: #d1b19b;
+    background-color: #95add8;
 }
 
 .service__item{

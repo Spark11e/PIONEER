@@ -56,7 +56,9 @@ const Registraion = observer(() => {
                                 placeholder="Номер телефона"
                                 value={phoneNumber}
                                 onChange={(e) => setPhone(e.target.value)}
+                                required
                             />
+                            
                         </div>
 
                         <div className={styles.registraion__item}>
@@ -66,6 +68,7 @@ const Registraion = observer(() => {
                                 placeholder="Email"
                                 value={email}
                                 onChange={(e) => setAdress(e.target.value)}
+                                required
                             />
                         </div>
                     </div>
@@ -73,9 +76,10 @@ const Registraion = observer(() => {
                     <div className={styles.registraion__checkbox}>
                         
                         <input type="checkbox"
+                        
                         checked={isChecked}
                         onChange={handleCheckboxChange}
-                            
+                        
                         />
                         <label>Принимаю условия <span className={styles.registraion__span}>политики конфиденциальности</span></label>
 

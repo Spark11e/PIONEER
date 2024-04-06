@@ -40,6 +40,7 @@ const MainPage = () => {
                             <a className={styles.button__link} href="/#" target="_blank">Администрирование</a>
                         </button>
                     </div>
+                    
                 </div>
             </div>
         </div>

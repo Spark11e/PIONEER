@@ -1,7 +1,7 @@
 
 *{
   box-sizing: border-box;
-  overflow: hidden;
+  /* overflow: hidden; */
   line-height: 1;
   margin: 0;
   padding: 0;
@@ -13,7 +13,8 @@ a{
   text-decoration: none;
 }
 body{
-  background-color: #F9F1E7;
+  background: rgb(120,134,245);
+  background: radial-gradient(circle, rgba(120,134,245,1) 0%, rgba(148,187,233,1) 100%);
 
 }
 
