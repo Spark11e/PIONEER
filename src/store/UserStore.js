@@ -2,8 +2,9 @@ import {makeAutoObservable} from 'mobx';
 
 export default class UserStore {
 
-    phoneNumber = '';
+    phoneNumber = null;
     email = '';
+    password = '';
     selectedService = {type_id: 0, type_code: 1,  type_name: 'Мойка'}; // выбранная услуга: 'шиномонтаж' или 'мойка'
     selectedLocation = ''; // выбранное место
     selectedTime = '';  // Выбранное время
@@ -46,6 +47,10 @@ export default class UserStore {
         this.email = email;
     }
 
+
+    setPassword(password){
+        this.password = password;
+    }
     setSelectedService(service) {
         this.selectedService = service;
     }
@@ -81,6 +86,10 @@ export default class UserStore {
     getEmail() {
         return this.email
     }
+
+    getPassword(){
+        return this.password
+    }
     
     getSelectedLocation(){
         return this.selectedLocation
@@ -101,8 +110,9 @@ export default class UserStore {
 
 
     reset() {
-        this.phoneNumber = '';
+        this.phoneNumber = null;
         this.email = '';
+        this.password = ''
         this.selectedService = '';
         this.selectedLocation = '';
         this.selectedTime = '';
@@ -114,6 +124,7 @@ export default class UserStore {
 
         console.log('Phone Number:', this.phoneNumber);
         console.log('Email:', this.email);
+        console.log('Password:', this.password);
         console.log('Selected Service:', this.selectedService);
         console.log('Selected Location:', this.selectedLocation);
         console.log('Selected Organization:', this.selectedOrganization = {});

@@ -1,10 +1,14 @@
 import React, {useState, useContext} from 'react';
 import { observer } from 'mobx-react-lite';
 
-import { useNavigate } from "react-router-dom";
-import { SERVICES_ROUTER } from '../../../utils/const';
+import {useFormik} from 'formik';
+import * as Yup from 'yup';
 
-import InputMask from 'react-input-mask';
+
+import { useNavigate, useLocation, NavLink } from "react-router-dom";
+import { SERVICES_ROUTER, LOGIN_ROUTER } from '../../../utils/const';
+
+import InputMask, {unmask} from 'react-input-mask';
 
 import {Context} from '../../../index'
 
@@ -12,29 +16,50 @@ import styles from './Registraion.module.css'
 
 const Registraion = observer(() => {
 
-    const navigate = useNavigate();
 
-    const [phoneNumber, setPhone] = useState('');
-    const [email, setAdress] = useState('');
-    const [isChecked, setIsChecked] = useState(false);
+    const location = useLocation();
+
+    const navigate = useNavigate();
+    const isLogin = location.pathname === LOGIN_ROUTER;
 
     const { user } = useContext(Context);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        handleNext();
-    };
+    const formik = useFormik({
 
-    const handleCheckboxChange = () => {
-        setIsChecked(!isChecked);
-      }
+        initialValues: {
+            phoneNumber: '',
+            email: '',
+            password: '',
+            terms: false,
+        },
+        validationSchema: Yup.object({
+            phoneNumber: Yup.string()
+            .test('full-number', 'Введите полный номер телефона', (value) => {
+                // Убираем разделители и смотрим длину
+                const phoneNumberWithoutSeparators = value ? value.replace(/\D/g, '') : '';
+                return phoneNumberWithoutSeparators.length >= 11;
+            })
+            .required('Обязательное поле'),
+            email: Yup.string().email('Неверный формат email').required('Обязательное поле'),
+            password: Yup.string()
+            .min(2, "Миниум 2 символа")
+            .required('Обязательное поле'),
+            terms: Yup.boolean().oneOf([true], 'Вы должны принять условия'),
+        }),
+        onSubmit: (values) => {
 
-    const handleNext = () => {
-        user.setPhoneNumber(phoneNumber);
-        user.setEmail(email);
-        navigate(SERVICES_ROUTER);
+            let unmaskedPhoneNumber = values.phoneNumber.replace(/\D/g, '');
 
-    };
+            unmaskedPhoneNumber = Number(unmaskedPhoneNumber)
+
+            user.setPhoneNumber(unmaskedPhoneNumber);
+            user.setEmail(values.email);
+            user.setPassword(values.password);
+
+            navigate(SERVICES_ROUTER);
+        },
+    });
+
 
     return (
 
@@ -45,41 +70,80 @@ const Registraion = observer(() => {
             </div>
 
             <div className={styles.registraion}>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={formik.handleSubmit}>
                     <div className={styles.registraion__list}>
                         <div className={styles.registraion__item} >
                             <label>Номер телефона</label>
                             <InputMask
                                 mask="8 (999) 999-99-99"
                                 maskChar="_"
-                                type="text"
+                                type="tel"
                                 placeholder="Номер телефона"
-                                value={phoneNumber}
-                                onChange={(e) => setPhone(e.target.value)}
+
+                                value={formik.values.phoneNumber}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                name="phoneNumber"
                                 required
                             />
                             
+                            
                         </div>
+
+                        {formik.errors.phoneNumber && formik.touched.phoneNumber && (
+                                <div className={styles.error}>{formik.errors.phoneNumber}</div>
+                        )}
 
                         <div className={styles.registraion__item}>
                             <label>Email</label>  
                             <input
                                 type="email"
                                 placeholder="Email"
-                                value={email}
-                                onChange={(e) => setAdress(e.target.value)}
+                                value={formik.values.email}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                name="email"
                                 required
                             />
+                            
+                        </div>
+
+                        {formik.errors.email && formik.touched.email && (
+                                <div className={styles.error}>{formik.errors.email}</div>
+                        )}
+
+                        <div className={styles.registraion__item}>
+                            <label>Введите пароль</label>  
+                            <input
+                                type="password"
+                                placeholder="Пароль"
+                                value={formik.values.password}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                name="password"
+                                required
+                            />
+                        </div>
+                
+
+                        {formik.errors.password && formik.touched.password && (
+                                <div className={styles.error}>{formik.errors.password}</div>
+                        )}
+                        <div className={styles.login_link}>
+                            <NavLink to={LOGIN_ROUTER}>Войти в аккаунт</NavLink>
                         </div>
                     </div>
                     
                     <div className={styles.registraion__checkbox}>
                         
-                        <input type="checkbox"
-                        
-                        checked={isChecked}
-                        onChange={handleCheckboxChange}
-                        
+                        <input
+                        type="checkbox"
+                        checked={formik.values.terms}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        name="terms"
+                        required
+                          
                         />
                         <label>Принимаю условия <span className={styles.registraion__span}>политики конфиденциальности</span></label>
 
@@ -87,8 +151,14 @@ const Registraion = observer(() => {
 
                     <div className={styles.registraion__button}>
 
-                        <button onClick={handleSubmit} disabled={!isChecked} type="submit" >Зарегистрироваться</button>
+                        <button type="submit" disabled={!formik.isValid}>
+                                Зарегистрироваться
+                        </button>
+                        
                     </div>
+
+                    
+                    
 
                 </form>
             </div>

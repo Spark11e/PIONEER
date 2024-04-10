@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import { Context } from '../../../index';
 import styles from './OrganizationConfirm.module.css';
+import Button from "../../../components/Button";
 
 const OrganizationConfirm = observer(() => {
 
@@ -83,8 +84,8 @@ const OrganizationConfirm = observer(() => {
                 </div>
             )}
             <div>
-                {/* Кнопка отправить, добавьте логику отправки данных при нажатии */}
-                <button>Отправить</button>
+
+                <Button text={"Отправить"}/>
             </div>
         </div>
     );

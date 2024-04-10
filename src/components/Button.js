@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Button = ({text}) => {
+const Button = ({text, onClick}) => {
 
     const buttonStyle = {
         fontSize: '15px',
@@ -15,7 +15,7 @@ const Button = ({text}) => {
     };
 
     return (
-        <button style={buttonStyle}>{text}</button>
+        <button style={buttonStyle} onClick={onClick}>{text}</button>
     );
 };
 

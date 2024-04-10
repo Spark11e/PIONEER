@@ -4,8 +4,9 @@ import ServiceSelection from './pages/ClientRoute/ServiceSelection/ServiceSelect
 import OrganizationSelect from "./pages/ClientRoute/OrganizationSelect/OrganizationSelect";
 import OrganizationItem from "./pages/ClientRoute/OrganizationItem/OrganizationItem";
 import OrganizationConfirm from "./pages/ClientRoute/OrganizationConfirm/OrganizationConfirm";
+import Login from "./pages/ClientRoute/Login/Login";
 
-import { MAINPAGE_ROUTER, LOGIN_ROUTER, SERVICES_ROUTER, ORGANIZATION_ROUTER, CONFIRM_ROUTER } from "./utils/const";
+import { MAINPAGE_ROUTER, REGISTRATION_ROUTER, LOGIN_ROUTER, SERVICES_ROUTER, ORGANIZATION_ROUTER, CONFIRM_ROUTER } from "./utils/const";
 
 export const authRoutes = [
     // {
@@ -21,8 +22,13 @@ export const publicRoutes = [
         Component: MainPage
     },
     {
-        path: LOGIN_ROUTER,
+        path: REGISTRATION_ROUTER,
         Component: Registraion
+    },
+    
+    {
+        path: LOGIN_ROUTER,
+        Component: Login
     },
 
     {

@@ -3,7 +3,7 @@ import React from 'react';
 import styles from './MainPage.module.css'
 
 import { useNavigate } from "react-router-dom";
-import { LOGIN_ROUTER } from '../../utils/const';
+import { REGISTRATION_ROUTER } from '../../utils/const';
 
 const MainPage = () => {
 
@@ -12,7 +12,7 @@ const MainPage = () => {
     const handleLoginClick  = (e) => {
         
         e.preventDefault();
-        navigate(LOGIN_ROUTER);
+        navigate(REGISTRATION_ROUTER);
     }
 
     return (

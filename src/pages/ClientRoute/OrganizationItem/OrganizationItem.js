@@ -44,19 +44,16 @@ const OrganizationItem = observer(() => {
 
     const handleClick= () => {
         console.log(user.getSelectedServices());
-        // Сохраняем выбранные услуги в стор
-        // user.setSelectedServices(user.selectedServices);
 
-        // Редирект на страницу с подтверждением (confirm) и передача id организации
-        // navigate(`/organization/${user.selectedOrganization.organization_id}/confirm`);
         navigate(CONFIRM_ROUTER);
     };
 
 
     return (
         <div className={styles.services__container}>
+            <h2>{user.selectedOrganization.subject_name}</h2>
             <div>
-                <h2>{user.selectedService.type_name}, {user.selectedOrganization.subject_name}</h2>
+                <h2>{user.selectedService.type_name}</h2>
             </div>
             <div className={styles.services__list}>
                 {filteredServices.map(service => (
@@ -75,7 +72,9 @@ const OrganizationItem = observer(() => {
 
             </div>
 
-            <button onClick={handleClick}>Выбрать</button>
+            <Button text={"Выбрать услугу"} onClick={handleClick}  className={styles.next__button}/>
+                        
+                    
         </div> 
     );
 });

@@ -9,13 +9,17 @@
     justify-content: center
 }
 
-.registraion{
+form{
+    width: 400px;
+}
+
+.login{
     display: flex;
     justify-content: center;
     width: 800px;
 }
 
-.registraion__list{
+.login__list{
     margin-top: 55px;
     display: flex;
     gap: 33px;
@@ -26,18 +30,18 @@ h2{
     margin-top: 75px;
 }
 
-.registraion__item label{
+.login__item label{
     font-weight: 500;
     font-size: 23px;
 
 }
 
-.registraion__item{
+.login__item{
     display: flex;
     justify-content: space-between;
 }
 
-.registraion__item input{
+.login__item input{
     text-align: center;
     font-weight: 500;
     border: none;
@@ -48,23 +52,13 @@ h2{
 
 
 
-.registraion__checkbox{
-    margin-top: 30%;
-}
-
-
-.registraion__span{
-    color: #8367c4;
-
-}
-
-.registraion__button{
+.login__button{
     display: flex;
     margin-top: 7%;
     justify-content: center;
 }
 
-.registraion__button button{
+.login__button button{
     font-size: 15px;
     cursor: pointer;
     font-weight: 500;
@@ -78,7 +72,7 @@ h2{
 
 }
 
-.registraion__button button:disabled{
+.login__button button:disabled{
     color: #c9bcb3;
     border: 1px solid #c9bcb3;
 
@@ -86,16 +80,9 @@ h2{
 }
 
 
-.registraion__checkbox{
-    display: flex;
-    align-items:center;
-}
 
-.registraion__checkbox input{
-    width: 30px;
-    height: 16px;
-}
 .login_link{
     display: flex;
     justify-content: center;
 }
+
