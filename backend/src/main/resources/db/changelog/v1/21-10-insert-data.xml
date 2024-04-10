@@ -1,0 +1,175 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.24.xsd"
+                   objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+
+    <!-- Inserting data into service table -->
+    <changeSet id="1" author="Evdokimov">
+        <insert tableName="service">
+            <column name="id" value="402586b5-1bd5-42f5-a2d2-c9fb760a02b5"/>
+            <column name="add_info" value="Sample Service Info"/>
+            <column name="name" value="Шиномонтаж"/>
+            <column name="code" value="001"/>
+        </insert>
+        <insert tableName="service">
+            <column name="id" value="ffe57c64-e007-4651-a5e6-e1a31d05f2ea"/>
+            <column name="add_info" value="Sample Service Info"/>
+            <column name="name" value="Автомойка"/>
+            <column name="code" value="002"/>
+        </insert>
+    </changeSet>
+
+    <!-- Inserting data into person table -->
+    <changeSet id="2" author="Evdokimov">
+        <insert tableName="person">
+            <column name="id" value="b357687f-4bdc-4a45-80b5-6b628772c3d6"/>
+            <column name="add_info" value="Aggregator specialist"/>
+            <column name="patronymic" value="Sample Patronymic"/>
+            <column name="email" value="aggregator@mail.ru"/>
+            <column name="password" value="aggregator"/>
+            <column name="name" value="Sample Name"/>
+            <column name="surname" value="Sample Surname"/>
+            <column name="phone_number" value="1234567890"/>
+        </insert>
+        <insert tableName="person">
+            <column name="id" value="3c3e1e9a-1773-4668-aede-e2eab180eeb5"/>
+            <column name="add_info" value="Responsible person"/>
+            <column name="patronymic" value="Sample Patronymic"/>
+            <column name="email" value="responsible@mail.ru"/>
+            <column name="password" value="responsible"/>
+            <column name="name" value="Sample Name"/>
+            <column name="surname" value="Sample Surname"/>
+            <column name="phone_number" value="1234567890"/>
+        </insert>
+        <insert tableName="person">
+            <column name="id" value="5fe43ad6-9a79-4116-b9a9-5170122ac938"/>
+            <column name="add_info" value="Customer"/>
+            <column name="patronymic" value="Sample Patronymic"/>
+            <column name="email" value="customer@mail.ru"/>
+            <column name="password" value="customer"/>
+            <column name="name" value="Sample Name"/>
+            <column name="surname" value="Sample Surname"/>
+            <column name="phone_number" value="1234567890"/>
+        </insert>
+    </changeSet>
+
+    <!-- Inserting data into organization table -->
+    <changeSet id="3" author="Evdokimov">
+        <insert tableName="organization">
+            <column name="id" value="610e7e69-b090-4fc7-be64-7db150081f85"/>
+            <column name="add_info" value="Sample Organization Info"/>
+            <column name="ogrn" value="0000000000001"/>
+            <column name="kpp" value="000000001"/>
+            <column name="inn" value="0000000001"/>
+            <column name="short_name" value="Sample Short Name"/>
+            <column name="full_name" value="Sample Full Name"/>
+            <column name="responsible_person_id" value="3c3e1e9a-1773-4668-aede-e2eab180eeb5"/>
+        </insert>
+    </changeSet>
+
+    <!-- Inserting data into address table -->
+    <changeSet id="4" author="Evdokimov">
+        <insert tableName="address">
+            <column name="id" value="4115b2a5-eec4-441e-9c96-6bec36544ab3"/>
+            <column name="add_info" value="Sample Address Info"/>
+            <column name="subject" value="Sample Subject"/>
+            <column name="city" value="Sample City"/>
+            <column name="house_number" value="123"/>
+            <column name="street" value="Sample Street"/>
+            <column name="address_type" value="PHYSICAL"/>
+            <column name="organization_id" value="610e7e69-b090-4fc7-be64-7db150081f85"/>
+        </insert>
+        <insert tableName="address">
+            <column name="id" value="767c49ae-0202-42be-85e0-6cf0e4c1eb38"/>
+            <column name="add_info" value="Sample Address Info"/>
+            <column name="subject" value="Sample Subject"/>
+            <column name="city" value="Sample City"/>
+            <column name="house_number" value="123"/>
+            <column name="street" value="Sample Street"/>
+            <column name="address_type" value="LEGAL"/>
+            <column name="organization_id" value="610e7e69-b090-4fc7-be64-7db150081f85"/>
+        </insert>
+    </changeSet>
+
+    <!-- Inserting data into aggregator_specialist table -->
+    <changeSet id="5" author="Evdokimov">
+        <insert tableName="aggregator_specialist">
+            <column name="id" value="3f5ceeec-7008-483b-9100-08418b415607"/>
+            <column name="add_info" value="Sample Aggregator Specialist Info"/>
+            <column name="specialist_id" value="b357687f-4bdc-4a45-80b5-6b628772c3d6"/>
+        </insert>
+    </changeSet>
+
+    <!-- Inserting data into connection_request table -->
+    <changeSet id="6" author="Evdokimov">
+        <insert tableName="connection_request">
+            <column name="id" value="1402640b-dd94-4ab6-a5fa-6793ec271100"/>
+            <column name="add_info" value="Sample Connection Request Info"/>
+            <column name="status" value="COMPLETED"/>
+            <column name="date_end" value="2024-03-21"/>
+            <column name="date_begin" value="2024-03-20"/>
+            <column name="reg_number" value="Sample Reg Number"/>
+            <column name="organization_id" value="610e7e69-b090-4fc7-be64-7db150081f85"/>
+        </insert>
+    </changeSet>
+
+    <!-- Inserting data into connection_request_aggregator_specialists table -->
+    <changeSet id="7" author="Evdokimov">
+        <insert tableName="connection_request_aggregator_specialists">
+            <column name="aggregator_specialists_id" value="3f5ceeec-7008-483b-9100-08418b415607"/>
+            <column name="connection_request_id" value="1402640b-dd94-4ab6-a5fa-6793ec271100"/>
+        </insert>
+    </changeSet>
+
+    <!-- Inserting data into customer table -->
+    <changeSet id="8" author="Evdokimov">
+        <insert tableName="customer">
+            <column name="id" value="610e7e69-b090-4fc7-be64-7db150081f85"/>
+            <column name="add_info" value="Sample Customer Info"/>
+            <column name="customer_id" value="5fe43ad6-9a79-4116-b9a9-5170122ac938"/>
+        </insert>
+    </changeSet>
+
+
+    <!-- Inserting data into work table -->
+    <changeSet id="9" author="Evdokimov">
+        <insert tableName="work">
+            <column name="id" value="cbafd6f9-1211-4446-8943-dbf105be4952"/>
+            <column name="add_info" value="Sample Work Info"/>
+            <column name="duration" value="10"/>
+            <column name="cost" value="100.00"/>
+            <column name="name" value="Замена шин"/>
+            <column name="code" value="001"/>
+            <column name="service_id" value="402586b5-1bd5-42f5-a2d2-c9fb760a02b5"/>
+        </insert>
+        <insert tableName="work">
+            <column name="id" value="2ff03db5-6283-4a96-a2f6-d99c347849f3"/>
+            <column name="add_info" value="Sample Work Info"/>
+            <column name="duration" value="10"/>
+            <column name="cost" value="100.00"/>
+            <column name="name" value="Подкачка колес"/>
+            <column name="code" value="002"/>
+            <column name="service_id" value="402586b5-1bd5-42f5-a2d2-c9fb760a02b5"/>
+        </insert>
+        <insert tableName="work">
+            <column name="id" value="26d82aaa-0e0a-44f6-aca5-97611acbd5bc"/>
+            <column name="add_info" value="Sample Work Info"/>
+            <column name="duration" value="10"/>
+            <column name="cost" value="100.00"/>
+            <column name="name" value="Помыть кузов"/>
+            <column name="code" value="001"/>
+            <column name="service_id" value="ffe57c64-e007-4651-a5e6-e1a31d05f2ea"/>
+        </insert>
+        <insert tableName="work">
+            <column name="id" value="1da49321-48c9-46ad-a788-47c8cdb8eaef"/>
+            <column name="add_info" value="Sample Work Info"/>
+            <column name="duration" value="10"/>
+            <column name="cost" value="100.00"/>
+            <column name="name" value="Помыть салон"/>
+            <column name="code" value="002"/>
+            <column name="service_id" value="ffe57c64-e007-4651-a5e6-e1a31d05f2ea"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

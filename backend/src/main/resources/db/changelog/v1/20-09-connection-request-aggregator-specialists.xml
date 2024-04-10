@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.24.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1710964617196-4" author="Evdokimov">
+        <createTable tableName="connection_request_aggregator_specialists">
+            <column name="aggregator_specialists_id" type="UUID">
+                <constraints nullable="false" primaryKey="true"
+                             primaryKeyName="pk_connection_request_aggregatorspecialists"/>
+            </column>
+            <column name="connection_request_id" type="UUID">
+                <constraints nullable="false" primaryKey="true"
+                             primaryKeyName="pk_connection_request_aggregatorspecialists"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1710964617196-16" author="Evdokimov">
+        <addForeignKeyConstraint baseColumnNames="aggregator_specialists_id"
+                                 baseTableName="connection_request_aggregator_specialists"
+                                 constraintName="fk_conreqaggspe_on_aggregator_specialist" referencedColumnNames="id"
+                                 referencedTableName="aggregator_specialist"/>
+    </changeSet>
+    <changeSet id="1710964617196-17" author="Evdokimov">
+        <addForeignKeyConstraint baseColumnNames="connection_request_id"
+                                 baseTableName="connection_request_aggregator_specialists"
+                                 constraintName="fk_conreqaggspe_on_connection_request" referencedColumnNames="id"
+                                 referencedTableName="connection_request"/>
+    </changeSet>
+
+</databaseChangeLog>

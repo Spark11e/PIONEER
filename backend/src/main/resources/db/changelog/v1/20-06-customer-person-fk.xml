@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.24.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1710964617196-5" author="Evdokimov">
+        <createTable tableName="customer">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_customer"/>
+            </column>
+            <column name="add_info" type="VARCHAR(255)"/>
+            <column name="customer_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1710964617196-13" author="Evdokimov">
+        <addForeignKeyConstraint baseColumnNames="customer_id" baseTableName="customer"
+                                 constraintName="FK_CUSTOMER_ON_CUSTOMER" referencedColumnNames="id"
+                                 referencedTableName="person"/>
+    </changeSet>
+
+</databaseChangeLog>

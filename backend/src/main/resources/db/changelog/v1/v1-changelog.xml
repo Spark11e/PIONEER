@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.24.xsd">
+
+    <include file="20-01-service.xml"
+             relativeToChangelogFile="true"/>
+    <include file="20-08-work-service-fk.xml"
+             relativeToChangelogFile="true"/>
+    <include file="20-07-person.xml"
+             relativeToChangelogFile="true"/>
+    <include file="20-04-aggregator-specialist-person-fk.xml"
+             relativeToChangelogFile="true"/>
+    <include file="20-06-customer-person-fk.xml"
+             relativeToChangelogFile="true"/>
+    <include file="20-05-organization-person-fk.xml"
+             relativeToChangelogFile="true"/>
+    <include file="20-02-address-organization-fk.xml"
+             relativeToChangelogFile="true"/>
+    <include file="20-03-connection-request-organization-fk.xml"
+             relativeToChangelogFile="true"/>
+    <include file="20-09-connection-request-aggregator-specialists.xml"
+             relativeToChangelogFile="true"/>
+    <include file="21-10-insert-data.xml" relativeToChangelogFile="true"/>
+</databaseChangeLog>

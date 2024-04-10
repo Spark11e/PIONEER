@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.24.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1710964617196-6" author="Evdokimov">
+        <createTable tableName="organization">
+            <column name="id" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_organization"/>
+            </column>
+            <column name="add_info" type="VARCHAR(255)"/>
+            <column name="ogrn" type="VARCHAR(13)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="kpp" type="VARCHAR(9)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="inn" type="VARCHAR(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="short_name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="full_name" type="VARCHAR(150)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_connected" type="boolean" defaultValueBoolean="false">
+                <constraints nullable="false"/>
+            </column>
+            <column name="responsible_person_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1710964617196-14" author="Evdokimov">
+        <addForeignKeyConstraint baseColumnNames="responsible_person_id" baseTableName="organization"
+                                 constraintName="FK_ORGANIZATION_ON_RESPONSIBLE_PERSON" referencedColumnNames="id"
+                                 referencedTableName="person"/>
+    </changeSet>
+</databaseChangeLog>
