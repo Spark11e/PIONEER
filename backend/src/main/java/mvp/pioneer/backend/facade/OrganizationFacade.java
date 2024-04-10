@@ -4,9 +4,8 @@ import lombok.RequiredArgsConstructor;
 import mvp.pioneer.backend.dto.entity.AddressDto;
 import mvp.pioneer.backend.dto.entity.ConnectionRequestDto;
 import mvp.pioneer.backend.dto.entity.OrganizationDto;
-import mvp.pioneer.backend.dto.entity.ServiceRequestDto;
 import mvp.pioneer.backend.dto.organization.OrganizationLoginRequestDto;
-import mvp.pioneer.backend.dto.organization.OrganizationRegistrationRequestDto;
+import mvp.pioneer.backend.entity.ServiceRequest;
 import mvp.pioneer.backend.mapper.OrganizationMapper;
 import mvp.pioneer.backend.service.OrganizationService;
 import org.springframework.stereotype.Service;
@@ -22,11 +21,11 @@ public class OrganizationFacade {
 
     private final OrganizationMapper organizationMapper;
 
-    public ServiceRequestDto getServiceRequest(UUID organizationId) {
-        return organizationMapper.toServiceRequestDto(organizationService.getServiceRequest(organizationId));
+    public ServiceRequest getServiceRequest(UUID organizationId) {
+        return organizationService.getServiceRequest(organizationId);
     }
 
-    public OrganizationDto registration(OrganizationRegistrationRequestDto requestDto) {
+    public OrganizationDto registration(OrganizationDto requestDto) {
         return organizationMapper.toOrganizationDto(organizationService.registration(organizationMapper.toOrganization(requestDto)));
     }
 

@@ -24,22 +24,24 @@ public class ServiceRequestProducerConfig {
 
     @Bean
     public ProducerFactory<String, ServiceRequest> producerFactory() {
+        JsonSerializer<ServiceRequest> jsonSerializer = new JsonSerializer<>();
+        jsonSerializer.setAddTypeInfo(true);
         Map<String, Object> configProps = new HashMap<>();
         configProps.put(
                 ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,
                 bootstrapAddress);
-        configProps.put(
-                ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,
-                StringSerializer.class);
-        configProps.put(
-                ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,
-                JsonSerializer.class);
+//        configProps.put(
+//                ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,
+//                StringSerializer.class);
+//        configProps.put(
+//                ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,
+//                jsonSerializer);
         configProps.put(ProducerConfig.ACKS_CONFIG, "1");
-        return new DefaultKafkaProducerFactory<>(configProps);
+        return new DefaultKafkaProducerFactory<>(configProps, new StringSerializer(), jsonSerializer);
     }
 
     @Bean
-    public KafkaTemplate<String, ServiceRequest> kafkaTemplate(){
+    public KafkaTemplate<String, ServiceRequest> kafkaTemplate() {
         return new KafkaTemplate<>(producerFactory());
     }
 }

@@ -64,6 +64,7 @@
             <column name="inn" value="0000000001"/>
             <column name="short_name" value="Sample Short Name"/>
             <column name="full_name" value="Sample Full Name"/>
+            <column name="is_connected" value="true"/>
             <column name="responsible_person_id" value="3c3e1e9a-1773-4668-aede-e2eab180eeb5"/>
         </insert>
     </changeSet>

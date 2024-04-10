@@ -3,10 +3,9 @@ package mvp.pioneer.backend.controller;
 import lombok.RequiredArgsConstructor;
 import mvp.pioneer.backend.dto.entity.AddressDto;
 import mvp.pioneer.backend.dto.entity.OrganizationDto;
-import mvp.pioneer.backend.dto.entity.ServiceRequestDto;
 import mvp.pioneer.backend.dto.entity.ConnectionRequestDto;
 import mvp.pioneer.backend.dto.organization.OrganizationLoginRequestDto;
-import mvp.pioneer.backend.dto.organization.OrganizationRegistrationRequestDto;
+import mvp.pioneer.backend.entity.ServiceRequest;
 import mvp.pioneer.backend.facade.OrganizationFacade;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +20,7 @@ public class OrganizationController {
     private final OrganizationFacade facade;
 
     @PostMapping("/registration")
-    public OrganizationDto registration(@RequestBody OrganizationRegistrationRequestDto requestDto) {
+    public OrganizationDto registration(@RequestBody OrganizationDto requestDto) {
         return facade.registration(requestDto);
     }
 
@@ -46,7 +45,7 @@ public class OrganizationController {
     }
 
     @GetMapping("/service-request/{id}")
-    public ServiceRequestDto getServiceRequest(@PathVariable UUID id) {
+    public ServiceRequest getServiceRequest(@PathVariable UUID id) {
         return facade.getServiceRequest(id);
     }
 }

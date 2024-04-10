@@ -1,12 +1,11 @@
 package mvp.pioneer.backend.facade;
 
 import lombok.RequiredArgsConstructor;
-import mvp.pioneer.backend.dto.customer.GetAddressesResponseDto;
 import mvp.pioneer.backend.dto.customer.CustomerAuthResponseDto;
 import mvp.pioneer.backend.dto.customer.CustomerLoginRequestDto;
 import mvp.pioneer.backend.dto.customer.CustomerRegistrationRequestDto;
+import mvp.pioneer.backend.dto.customer.GetAddressesResponseDto;
 import mvp.pioneer.backend.dto.entity.ServiceDto;
-import mvp.pioneer.backend.dto.entity.ServiceRequestDto;
 import mvp.pioneer.backend.dto.entity.WorkDto;
 import mvp.pioneer.backend.entity.ServiceRequest;
 import mvp.pioneer.backend.mapper.CustomerMapper;
@@ -16,7 +15,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
@@ -38,10 +36,10 @@ public class CustomerFacade {
         return customerMapper.toWorkDtoList(customerService.getWorks(serviceId));
     }
 
-    public ServiceRequestDto createServiceRequest(ServiceRequestDto requestDto) {
-        ServiceRequest request = customerService.createServiceRequest(customerMapper.toServiceRequest(requestDto));
+    public ServiceRequest createServiceRequest(ServiceRequest requestDto) {
+        ServiceRequest request = customerService.createServiceRequest(requestDto);
         producer.sendServiceRequest(request);
-        return customerMapper.toServiceRequestDto(request);
+        return request;
     }
 
     public CustomerAuthResponseDto login(CustomerLoginRequestDto requestDto) {

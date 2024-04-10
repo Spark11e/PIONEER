@@ -9,5 +9,6 @@ public record AggregatorAuthResponseDto(
         String phoneNumber,
         String name,
         String surname,
-        String patronymic) implements Serializable {
+        String patronymic
+) implements Serializable {
 }

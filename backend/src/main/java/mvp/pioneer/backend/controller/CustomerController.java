@@ -6,8 +6,8 @@ import mvp.pioneer.backend.dto.customer.CustomerLoginRequestDto;
 import mvp.pioneer.backend.dto.customer.CustomerRegistrationRequestDto;
 import mvp.pioneer.backend.dto.customer.GetAddressesResponseDto;
 import mvp.pioneer.backend.dto.entity.ServiceDto;
-import mvp.pioneer.backend.dto.entity.ServiceRequestDto;
 import mvp.pioneer.backend.dto.entity.WorkDto;
+import mvp.pioneer.backend.entity.ServiceRequest;
 import mvp.pioneer.backend.facade.CustomerFacade;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,7 +46,7 @@ public class CustomerController {
     }
 
     @PostMapping("/service-request")
-    public ServiceRequestDto createServiceRequest(@RequestBody ServiceRequestDto requestDto) {
+    public ServiceRequest createServiceRequest(@RequestBody ServiceRequest requestDto) {
         return facade.createServiceRequest(requestDto);
     }
 }
