@@ -4,23 +4,20 @@ import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.UUID;
 
-@Schema
+@Schema(description = "Информация об организации")
 public record OrganizationDto(
-        @Schema
+        @Schema(description = "Идентификатор организации")
+        UUID id,
+        @Schema(description = "ОРГН")
         String ogrn,
-
-        @Schema
+        @Schema(description = "КПП")
         String kpp,
-
-        @Schema
+        @Schema(description = "ИНН")
         String inn,
-
-        @Schema
+        @Schema(description = "Сокращенное наименование организации")
         String shortName,
-
-        @Schema
+        @Schema(description = "Полное наименование организации")
         String fullName,
-        @Schema
-        PersonDto responsiblePerson
-) {
+        @Schema(description = "Информация об ответственном лице")
+        PersonDto responsiblePerson) {
 }

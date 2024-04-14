@@ -5,6 +5,7 @@ import mvp.pioneer.backend.entity.*;
 import mvp.pioneer.backend.repository.AddressRepository;
 import mvp.pioneer.backend.repository.ConnectionRequestRepository;
 import mvp.pioneer.backend.repository.OrganizationRepository;
+import mvp.pioneer.backend.repository.PersonRepository;
 import mvp.pioneer.backend.util.ServiceRequestQueue;
 import org.springframework.stereotype.Service;
 
@@ -20,12 +21,14 @@ public class OrganizationService {
     private final ConnectionRequestRepository connectionRequestRepository;
     private final AddressRepository addressRepository;
     private final ServiceRequestQueue queue;
+    private final PersonRepository personRepository;
 
     public ServiceRequest getServiceRequest(UUID organizationId) {
         return queue.poll(organizationId);
     }
 
     public Organization registration(Organization organization) {
+        organization.setResponsiblePerson(personRepository.save(organization.getResponsiblePerson()));
         return organizationRepository.save(organization);
     }
 

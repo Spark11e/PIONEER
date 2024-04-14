@@ -1,5 +1,6 @@
 package mvp.pioneer.backend.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import mvp.pioneer.backend.dto.aggregator.AggregatorAuthResponseDto;
 import mvp.pioneer.backend.dto.aggregator.AggregatorLoginRequestDto;
@@ -19,17 +20,20 @@ public class AggregatorController {
     private final AggregatorFacade aggregatorFacade;
 
     @PostMapping("/login")
-    public AggregatorAuthResponseDto login(@RequestBody AggregatorLoginRequestDto requestDto){
+    @Operation(summary = "Авторизация специалиста", description = "Авторизация специалиста-агрегатора, обрабатывающего заявки организаций")
+    public AggregatorAuthResponseDto login(@RequestBody AggregatorLoginRequestDto requestDto) {
         return aggregatorFacade.login(requestDto);
     }
 
     @GetMapping("connection-request")
-    public List<ConnectionRequestDto> getConnectionRequests(){
+    @Operation(summary = "Получение заявок", description = "Получения списка заявок на регистрацию от организаций")
+    public List<ConnectionRequestDto> getConnectionRequests() {
         return aggregatorFacade.getConnectionRequests();
     }
 
     @PatchMapping("/connection-request/{id}")
-    public ConnectionRequestDto patchConnectionRequest(@PathVariable UUID id, @RequestBody PatchConnectionRequestRequestDto requestDto){
+    @Operation(summary = "Обновление заявки", description = "Обновление данных заявки по идентификатору")
+    public ConnectionRequestDto patchConnectionRequest(@PathVariable(name = "id") UUID id, @RequestBody PatchConnectionRequestRequestDto requestDto) {
         return aggregatorFacade.patchConnectionRequest(id, requestDto);
     }
 }

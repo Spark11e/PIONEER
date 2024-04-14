@@ -2,10 +2,10 @@ package mvp.pioneer.backend.dto.customer;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
-@Schema
+@Schema(description = "Информация для авторизации потребителя")
 public record CustomerLoginRequestDto(
-        @Schema(defaultValue = "customer@mail.ru")
+        @Schema(description = "Электронная почта", defaultValue = "customer@mail.ru")
         String email,
-        @Schema(defaultValue = "customer")
+        @Schema(description = "Пароль", defaultValue = "customer")
         String password) {
 }

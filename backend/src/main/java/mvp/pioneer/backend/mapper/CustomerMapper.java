@@ -41,10 +41,12 @@ public interface CustomerMapper {
     @Mapping(source = "code", target = "code")
     WorkDto toWorkDto(Work work);
 
+    @Mapping(source = "id", target = "addressId")
     @Mapping(source = "subject", target = "subject")
     @Mapping(source = "city", target = "city")
     @Mapping(source = "houseNumber", target = "houseNumber")
     @Mapping(source = "street", target = "street")
+    @Mapping(source = "organization.id", target = "organizationId")
     @Mapping(source = "organization.shortName", target = "shortName")
     @Mapping(source = "organization.fullName", target = "fullName")
     GetAddressesResponseDto toGetAddressesResponseDto(Address address);
