@@ -32,6 +32,7 @@ public interface OrganizationMapper {
     @Mapping(source = "patronymic", target = "responsiblePerson.patronymic")
     Organization toOrganization(OrganizationRegistrationRequestDto requestDto);
 
+    @Mapping(source = "id", target = "id")
     @Mapping(source = "ogrn", target = "ogrn")
     @Mapping(source = "kpp", target = "kpp")
     @Mapping(source = "inn", target = "inn")
