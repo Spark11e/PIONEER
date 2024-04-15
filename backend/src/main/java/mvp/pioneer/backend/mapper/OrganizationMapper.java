@@ -4,6 +4,7 @@ import mvp.pioneer.backend.dto.entity.AddressDto;
 import mvp.pioneer.backend.dto.entity.ConnectionRequestDto;
 import mvp.pioneer.backend.dto.entity.OrganizationDto;
 import mvp.pioneer.backend.dto.entity.PersonDto;
+import mvp.pioneer.backend.dto.organization.OrganizationRegistrationRequestDto;
 import mvp.pioneer.backend.entity.Address;
 import mvp.pioneer.backend.entity.ConnectionRequest;
 import mvp.pioneer.backend.entity.Organization;
@@ -23,7 +24,13 @@ public interface OrganizationMapper {
     @Mapping(source = "inn", target = "inn")
     @Mapping(source = "shortName", target = "shortName")
     @Mapping(source = "fullName", target = "fullName")
-    Organization toOrganization(OrganizationDto requestDto);
+    @Mapping(source = "email", target = "responsiblePerson.email")
+    @Mapping(source = "password", target = "responsiblePerson.password")
+    @Mapping(source = "phoneNumber", target = "responsiblePerson.phoneNumber")
+    @Mapping(source = "name", target = "responsiblePerson.name")
+    @Mapping(source = "surname", target = "responsiblePerson.surname")
+    @Mapping(source = "patronymic", target = "responsiblePerson.patronymic")
+    Organization toOrganization(OrganizationRegistrationRequestDto requestDto);
 
     @Mapping(source = "ogrn", target = "ogrn")
     @Mapping(source = "kpp", target = "kpp")
@@ -43,6 +50,7 @@ public interface OrganizationMapper {
     @Mapping(source = "houseNumber", target = "houseNumber")
     @Mapping(source = "street", target = "street")
     @Mapping(source = "addressType", target = "addressType")
+    @Mapping(source = "organization.id", target = "organizationId")
     AddressDto toAddressDto(Address address);
 
     @Mapping(source = "subject", target = "subject")
@@ -50,6 +58,7 @@ public interface OrganizationMapper {
     @Mapping(source = "houseNumber", target = "houseNumber")
     @Mapping(source = "street", target = "street")
     @Mapping(source = "addressType", target = "addressType")
+    @Mapping(source = "organizationId", target = "organization.id")
     Address toAddress(AddressDto addressDto);
 
     @Mapping(source = "email", target = "email")

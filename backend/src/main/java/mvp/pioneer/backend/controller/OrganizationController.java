@@ -6,6 +6,7 @@ import mvp.pioneer.backend.dto.entity.AddressDto;
 import mvp.pioneer.backend.dto.entity.ConnectionRequestDto;
 import mvp.pioneer.backend.dto.entity.OrganizationDto;
 import mvp.pioneer.backend.dto.organization.OrganizationLoginRequestDto;
+import mvp.pioneer.backend.dto.organization.OrganizationRegistrationRequestDto;
 import mvp.pioneer.backend.entity.ServiceRequest;
 import mvp.pioneer.backend.facade.OrganizationFacade;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +23,7 @@ public class OrganizationController {
 
     @PostMapping("/registration")
     @Operation(summary = "Регистрация организации", description = "Регистрация новой организации")
-    public OrganizationDto registration(@RequestBody OrganizationDto requestDto) {
+    public OrganizationDto registration(@RequestBody OrganizationRegistrationRequestDto requestDto) {
         return facade.registration(requestDto);
     }
 
@@ -48,6 +49,12 @@ public class OrganizationController {
     @Operation(summary = "Получение заявок на регистрацию", description = "Получение списка заявок на регистрацию организации по ее идентификатору")
     public List<ConnectionRequestDto> getConnectionRequests(@PathVariable UUID id) {
         return facade.getConnectionRequests(id);
+    }
+
+    @PostMapping("/connection-request/{id}")
+    @Operation(summary = "Отправка заявки на регистрацию", description = "Отправка заявки на регистрацию организации по ее идентификатору")
+    public ConnectionRequestDto sendConnectionRequests(@PathVariable UUID id) {
+        return facade.sendConnectionRequests(id);
     }
 
     @GetMapping("/service-request/{id}")

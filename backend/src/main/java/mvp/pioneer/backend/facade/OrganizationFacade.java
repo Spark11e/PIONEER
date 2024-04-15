@@ -5,6 +5,7 @@ import mvp.pioneer.backend.dto.entity.AddressDto;
 import mvp.pioneer.backend.dto.entity.ConnectionRequestDto;
 import mvp.pioneer.backend.dto.entity.OrganizationDto;
 import mvp.pioneer.backend.dto.organization.OrganizationLoginRequestDto;
+import mvp.pioneer.backend.dto.organization.OrganizationRegistrationRequestDto;
 import mvp.pioneer.backend.entity.ServiceRequest;
 import mvp.pioneer.backend.mapper.OrganizationMapper;
 import mvp.pioneer.backend.service.OrganizationService;
@@ -25,7 +26,7 @@ public class OrganizationFacade {
         return organizationService.getServiceRequest(organizationId);
     }
 
-    public OrganizationDto registration(OrganizationDto requestDto) {
+    public OrganizationDto registration(OrganizationRegistrationRequestDto requestDto) {
         return organizationMapper.toOrganizationDto(organizationService.registration(organizationMapper.toOrganization(requestDto)));
     }
 
@@ -43,5 +44,9 @@ public class OrganizationFacade {
 
     public List<ConnectionRequestDto> getConnectionRequests(UUID id) {
         return organizationMapper.toConnectionRequestDtoList(organizationService.getConnectionRequests(id));
+    }
+
+    public ConnectionRequestDto sendConnectionRequests(UUID id) {
+        return organizationMapper.toConnectionRequestDto(organizationService.sendConnectionRequest(id));
     }
 }

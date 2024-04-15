@@ -1,16 +1,14 @@
 package mvp.pioneer.backend.service;
 
 import lombok.RequiredArgsConstructor;
-import mvp.pioneer.backend.dto.aggregator.AggregatorAuthResponseDto;
-import mvp.pioneer.backend.dto.entity.ConnectionRequestDto;
 import mvp.pioneer.backend.entity.AggregatorSpecialist;
 import mvp.pioneer.backend.entity.ConnectionRequest;
-import mvp.pioneer.backend.entity.Customer;
 import mvp.pioneer.backend.enums.ConnectionRequestStatus;
 import mvp.pioneer.backend.repository.AggregatorSpecialistRepository;
 import mvp.pioneer.backend.repository.ConnectionRequestRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -28,10 +26,27 @@ public class AggregatorService {
     }
 
     public ConnectionRequest patchConnectionRequest(UUID id, ConnectionRequestStatus status) {
-        ConnectionRequest connectionRequest = connectionRepository.findById(id).get();
-        connectionRequest.setStatus(status);
-        connectionRequest.getOrganization().setConnected(true);
-        return connectionRepository.save(connectionRequest);
+        ConnectionRequest connectionRequest = connectionRepository.findById(id).orElseThrow();
+        switch (status) {
+            case COMPLETED -> {
+                connectionRequest.setStatus(status);
+                connectionRequest.setDateEnd(LocalDate.now());
+                connectionRequest.getOrganization().setConnected(true);
+                return connectionRepository.save(connectionRequest);
+            }
+            case REJECTED -> {
+                connectionRequest.setStatus(status);
+                connectionRequest.setDateEnd(LocalDate.now());
+                return connectionRepository.save(connectionRequest);
+            }
+            case IN_WORK, NEW -> {
+                connectionRequest.setStatus(status);
+                return connectionRepository.save(connectionRequest);
+            }
+            default -> {
+                return null;
+            }
+        }
     }
 
     public AggregatorSpecialist login(String email, String password) {

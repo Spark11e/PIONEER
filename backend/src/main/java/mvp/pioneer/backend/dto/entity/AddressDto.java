@@ -17,12 +17,13 @@ public record AddressDto(
         String subject,
         @Schema(description = "Город")
         String city,
-
         @Schema(description = "Номер дома")
         String houseNumber,
         @Schema(description = "Улица")
         String street,
         @Schema(description = "Тип адресса (физический/юридический)")
-        AddressType addressType
+        AddressType addressType,
+        @Schema(description = "Идентификатор организации")
+        UUID organizationId
 ) implements Serializable {
 }

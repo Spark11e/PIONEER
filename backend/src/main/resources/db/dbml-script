@@ -1,0 +1,97 @@
+Table address {
+  id uuid [pk, not null]
+  add_info character(255)
+  subject character(50) [not null]
+  city character(50) [not null]
+  house_number character(10) [not null]
+  street character(50) [not null]
+  address_type character(30) [not null]
+  organization_id uuid [not null]
+}
+
+Table aggregator_specialist {
+  id uuid [pk, not null]
+  add_info character(255)
+  specialist_id uuid [not null]
+}
+
+Table connection_request {
+  id uuid [pk, not null]
+  add_info character(255)
+  status character(20) [not null]
+  date_end date
+  date_begin date [not null]
+  reg_number character(20) [not null]
+  organization_id uuid
+}
+
+Table connection_request_aggregator_specialists {
+  aggregator_specialists_id uuid [not null]
+  connection_request_id uuid [not null]
+
+Indexes {
+  (aggregator_specialists_id, connection_request_id) [pk]
+}
+}
+
+Table customer {
+  id uuid [pk, not null]
+  add_info character(255)
+  customer_id uuid [not null]
+}
+
+Table organization {
+  id uuid [pk, not null]
+  add_info character(255)
+  ogrn character(13) [not null]
+  kpp character(9) [not null]
+  inn character(10) [not null]
+  short_name character(50) [not null]
+  full_name character(150) [not null]
+  is_connected boolean [not null, default: false]
+  responsible_person_id uuid [not null]
+}
+
+Table person {
+  id uuid [pk, not null]
+  add_info character(255)
+  patronymic character(50)
+  email character(50) [not null]
+  password character [not null]
+  name character(50) [not null]
+  surname character(50) [not null]
+  phone_number character(20) [not null]
+}
+
+Table service {
+  id uuid [pk, not null]
+  add_info character(255)
+  name character(50) [not null]
+  code character(3) [not null]
+}
+
+Table work {
+  id uuid [pk, not null]
+  add_info character(255)
+  duration integer [not null]
+  cost numeric(19,2) [not null]
+  name character(50) [not null]
+  code character(3) [not null]
+  service_id uuid [not null]
+}
+
+Ref:organization.id < address.organization_id
+
+Ref:person.id < aggregator_specialist.specialist_id
+
+Ref:organization.id < connection_request.organization_id
+
+Ref:aggregator_specialist.id < connection_request_aggregator_specialists.aggregator_specialists_id
+
+Ref:connection_request.id < connection_request_aggregator_specialists.connection_request_id
+
+Ref:person.id < customer.customer_id
+
+Ref:person.id < organization.responsible_person_id
+
+Ref:service.id < work.service_id
