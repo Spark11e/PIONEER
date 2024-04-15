@@ -10,13 +10,14 @@
 5. Потребитель создает заявку по `/api/v1/customer/service-request`, которая отправляется в топик по organizationId
 ### 2. Organization pipeline
 1. Ответственное за организацию лицо заходит на главную страницу  
-1.1.  Лицо оставляет заявку на регистрацию организации по `/api/v1/organization/registration`  
-1.2.  После оставления заявки, лицо может авторизироваться по `/api/v1/organization/registration`
-2. Лицо добавляет своей организации адресс по `/api/v1/organization/addresses`.
+1.1.  Лицо проходит регистрацию организации по `/api/v1/organization/registration`  
+1.2.  После регистрации лицо может авторизироваться по `/api/v1/organization/registration`
+2. Лицо оставляет заявку на подтверждение своей организации по `/api/v1/organization/connection-request/{id}`
+3. Лицо добавляет своей организации адресс по `/api/v1/organization/addresses`.
    Также по данному endpoint'у лицо может обновить данные уже добавленного адресса
-3. Лицо может получить список привязанных адрессов по `/api/v1/organization/addresses/{id}`
-4. Лицо может получить список своих заявок на регистрацию по `/api/v1/organization/connection-request/{id}`
-5. Если заявка на регистрацию одобрена, лицо может получить заявку на услугу из своего топика по `/api/v1/organization/service-request/{id}`
+4. Лицо может получить список привязанных адрессов по `/api/v1/organization/addresses/{id}`
+5. Лицо может получить список своих заявок на регистрацию по `/api/v1/organization/connection-request/{id}`
+6. Если заявка на регистрацию одобрена, лицо может получить заявку на услугу из своего топика по `/api/v1/organization/service-request/{id}`
 ### 3. Aggregator-specialist pipeline
 1. Специалист заходит на главную страницу и может авторизироваться по `/api/v1/aggregator/login`
 2. Специалист получает список заявок на регистрацию организации по `/api/v1/aggregator/connection-request`
