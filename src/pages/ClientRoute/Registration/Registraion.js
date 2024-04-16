@@ -8,7 +8,7 @@ import * as Yup from 'yup';
 import { useNavigate, useLocation, NavLink } from "react-router-dom";
 import { SERVICES_ROUTER, LOGIN_ROUTER } from '../../../utils/const';
 
-import InputMask, {unmask} from 'react-input-mask';
+import InputMask from 'react-input-mask';
 
 import {Context} from '../../../index'
 
@@ -20,7 +20,7 @@ const Registraion = observer(() => {
     const location = useLocation();
 
     const navigate = useNavigate();
-    const isLogin = location.pathname === LOGIN_ROUTER;
+
 
     const { user } = useContext(Context);
 
@@ -35,7 +35,7 @@ const Registraion = observer(() => {
         validationSchema: Yup.object({
             phoneNumber: Yup.string()
             .test('full-number', 'Введите полный номер телефона', (value) => {
-                // Убираем разделители и смотрим длину
+
                 const phoneNumberWithoutSeparators = value ? value.replace(/\D/g, '') : '';
                 return phoneNumberWithoutSeparators.length >= 11;
             })

@@ -11,3 +11,28 @@
     border-radius: 6%;
 
 }
+
+.date__selection{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.date__selection__list{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.date__selection__item label{
+    margin-left: 10px;
+
+
+}
+
+.time__selection{
+    justify-content: center;
+    flex-direction: column;
+    display: flex;
+    gap: 35px;
+}

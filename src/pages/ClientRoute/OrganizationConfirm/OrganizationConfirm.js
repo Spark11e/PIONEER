@@ -20,6 +20,27 @@ const OrganizationConfirm = observer(() => {
         setSelectedTime(event.target.value);
     };
 
+    const handleSubmit = () => {
+        // Создаем объект с нужными данными из стора
+        const data = {
+            phoneNumber: user.phoneNumber,
+            email: user.email,
+            selectedService: user.selectedService,
+            selectedLocation: user.selectedLocation,
+            selectedTime: selectedTime,
+            selectedDate: selectedDate,
+            selectedOrganization: user.selectedOrganization,
+            selectedServices: user.selectedServices,
+            totalCost: totalCost,
+            totalTime: totalTime,
+        };
+
+        // Выводим в консоль
+        console.log(JSON.stringify(data, null, 2));
+
+        // Здесь можно добавить отправку данных на бэкенд, когда он будет готов
+    };
+
     // Общая стоимость выбранных услуг
     const totalCost = user.selectedServices.reduce((acc, curr) => acc + curr.price, 0);
 
@@ -49,27 +70,30 @@ const OrganizationConfirm = observer(() => {
             
             <div className={styles.date__selection}>
                 <h3>Выберите день оказания услуги:</h3>
-                <div>
-                    <input
-                        type="radio"
-                        id="today"
-                        name="date"
-                        value="Сегодня"
-                        checked={selectedDate === 'Сегодня'}
-                        onChange={handleDateChange}
-                    />
-                    <label htmlFor="today">Сегодня</label>
-                </div>
-                <div>
-                    <input
-                        type="radio"
-                        id="tomorrow"
-                        name="date"
-                        value="Завтра"
-                        checked={selectedDate === 'Завтра'}
-                        onChange={handleDateChange}
-                    />
-                    <label htmlFor="tomorrow">Завтра</label>
+                <div className={styles.date__selection__list}>
+                    <div className={styles.date__selection__item}>
+                        <input
+                            type="radio"
+                            id="today"
+                            name="date"
+                            value="Сегодня"
+                            checked={selectedDate === 'Сегодня'}
+                            onChange={handleDateChange}
+                        />
+                        <label htmlFor="today">Сегодня</label>
+                    </div>
+                    <div className={styles.date__selection__item}>
+                        <input
+                            type="radio"
+                            id="tomorrow"
+                            name="date"
+                            value="Завтра"
+                            checked={selectedDate === 'Завтра'}
+                            onChange={handleDateChange}
+                        />
+                        <label htmlFor="tomorrow">Завтра</label>
+                    </div>
+
                 </div>
             </div>
             {selectedDate && (
@@ -85,7 +109,7 @@ const OrganizationConfirm = observer(() => {
             )}
             <div>
 
-                <Button text={"Отправить"}/>
+                <Button text={"Отправить"} onClick={handleSubmit}/>
             </div>
         </div>
     );

@@ -15,17 +15,10 @@ import {Context} from '../../../index'
 import styles from './Login.module.css'
 
 const Login = observer(() => {
-
-
-    const location = useLocation();
-
     const navigate = useNavigate();
-
-
     const { user } = useContext(Context);
 
     const formik = useFormik({
-
         initialValues: {
             
             email: '',
@@ -47,7 +40,6 @@ const Login = observer(() => {
             navigate(SERVICES_ROUTER);
         },
     });
-
 
     return (
 
